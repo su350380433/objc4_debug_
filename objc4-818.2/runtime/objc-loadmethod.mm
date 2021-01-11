@@ -173,11 +173,10 @@ void remove_category_from_loadable_list(Category cat)
     }
 }
 
-
 /***********************************************************************
 * call_class_loads
 * Call all pending class +load methods.
-* If new classes become loadable, +load is NOT called for them.
+* If new classes become loadable, +load is NOT called for them. 如果新类变为可加载，则不会为它们调用+ load。
 *
 * Called only by call_load_methods().
 **********************************************************************/
@@ -192,7 +191,7 @@ static void call_class_loads(void)
     loadable_classes_allocated = 0;
     loadable_classes_used = 0;
     
-    // Call all +loads for the detached list.
+    // Call all +loads for the detached list. 调用所有的类的+load方法
     for (i = 0; i < used; i++) {
         Class cls = classes[i].cls;
         load_method_t load_method = (load_method_t)classes[i].method;
@@ -201,7 +200,7 @@ static void call_class_loads(void)
         if (PrintLoading) {
             _objc_inform("LOAD: +[%s load]\n", cls->nameForLogging());
         }
-        (*load_method)(cls, @selector(load));
+        (*load_method)(cls, @selector(load));//指针调用
     }
     
     // Destroy the detached list.
@@ -210,11 +209,11 @@ static void call_class_loads(void)
 
 
 /***********************************************************************
-* call_category_loads
+* call_category_loads 调用分类的 +loads
 * Call some pending category +load methods.
 * The parent class of the +load-implementing categories has all of 
 *   its categories attached, in case some are lazily waiting for +initalize.
-* Don't call +load unless the parent class is connected.
+* Don't call +load unless the parent class is connected. 除非已经链接了父类，否则不要调用 +load
 * If new categories become loadable, +load is NOT called, and they 
 *   are added to the end of the loadable list, and we return TRUE.
 * Return FALSE if no new categories became loadable.
@@ -226,7 +225,7 @@ static bool call_category_loads(void)
     int i, shift;
     bool new_categories_added = NO;
     
-    // Detach current loadable list.
+    // Detach current loadable list. 当前可加载的分类 列表
     struct loadable_category *cats = loadable_categories;
     int used = loadable_categories_used;
     int allocated = loadable_categories_allocated;
@@ -305,9 +304,9 @@ static bool call_category_loads(void)
 
 /***********************************************************************
 * call_load_methods
-* Call all pending class and category +load methods.
-* Class +load methods are called superclass-first. 
-* Category +load methods are not called until after the parent class's +load.
+* Call all pending class and category +load methods. 调用所有类和 分类的 +load方法
+* Class +load methods are called superclass-first. superclass父类的+load优先调用
+* Category +load methods are not called until after the parent class's +load. 父类的+load执行完后 才会调用分类的+load
 * 
 * This method must be RE-ENTRANT, because a +load could trigger 
 * more image mapping. In addition, the superclass-first ordering 
@@ -320,9 +319,9 @@ static bool call_category_loads(void)
 * image loading during a +load, and make sure that no 
 * +load method is forgotten because it was added during 
 * a +load call.
-* Sequence:
-* 1. Repeatedly call class +loads until there aren't any more
-* 2. Call category +loads ONCE.
+* Sequence: 顺序
+* 1. Repeatedly call class +loads until there aren't any more  调用所有的类的 +load，
+* 2. Call category +loads ONCE. 调用分类
 * 3. Run more +loads if:
 *    (a) there are more classes to load, OR
 *    (b) there are some potential category +loads that have 
@@ -348,12 +347,12 @@ void call_load_methods(void)
     void *pool = objc_autoreleasePoolPush();
 
     do {
-        // 1. Repeatedly call class +loads until there aren't any more
+        // 1. Repeatedly call class +loads until there aren't any more1. 反复调用class + loads，直到不再有
         while (loadable_classes_used > 0) {
             call_class_loads();
         }
 
-        // 2. Call category +loads ONCE
+        // 2. Call category +loads ONCE// 2. 调用分类的 load
         more_categories = call_category_loads();
 
         // 3. Run more +loads if there are classes OR more untried categories

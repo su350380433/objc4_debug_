@@ -12,13 +12,14 @@
 // 爽了之后,还来一个 👍
 
 #import <Foundation/Foundation.h>
+#import "Person_test.h"
 
 int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
-        NSObject *objc = [NSObject alloc];
-        
-    }
+    Person_test *objc = [[Person_test alloc] init];
+    objc.name = @"what is your name xx=";
+    objc.age = 101;
+    
+    NSLog(@"%@",objc.name);
+    NSLog(@"%ld",objc.age);
     return 0;
 }

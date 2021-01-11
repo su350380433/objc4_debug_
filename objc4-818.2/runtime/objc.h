@@ -43,13 +43,16 @@ struct objc_object {
 };
 
 /// A pointer to an instance of a class.
+///指向类实例的指针。
 typedef struct objc_object *id;
 #endif
 
 /// An opaque type that represents a method selector.
+///代表方法选择器的不透明类型。
 typedef struct objc_selector *SEL;
 
-/// A pointer to the function of a method implementation. 
+/// A pointer to the function of a method implementation.
+/// 指向方法实现功能的指针。
 #if !OBJC_OLD_DISPATCH_PROTOTYPES
 typedef void (*IMP)(void /* id, SEL, ... */ ); 
 #else

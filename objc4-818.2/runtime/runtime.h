@@ -40,16 +40,16 @@
 
 #if !OBJC_TYPES_DEFINED
 
-/// An opaque type that represents a method in a class definition.
+/// An opaque type that represents a method in a class definition.代表类定义中的方法的不透明类型。
 typedef struct objc_method *Method;
 
-/// An opaque type that represents an instance variable.
+/// An opaque type that represents an instance variable. 代表实例变量的不透明类型。
 typedef struct objc_ivar *Ivar;
 
-/// An opaque type that represents a category.
+/// An opaque type that represents a category.代表类别的不透明类型。
 typedef struct objc_category *Category;
 
-/// An opaque type that represents an Objective-C declared property.
+/// An opaque type that represents an Objective-C declared property.代表Object-C声明的属性的不透明类型。
 typedef struct objc_property *objc_property_t;
 
 struct objc_class {
@@ -1964,7 +1964,9 @@ struct objc_ivar_list {
     struct objc_ivar ivar_list[1]                            OBJC2_UNAVAILABLE;
 }                                                            OBJC2_UNAVAILABLE;
 
-
+/// 方法名 method_name 类型为 SEL，相同名字的方法即使在不同类中定义，它们的方法选择器也相同。代表方法的名称
+/// 方法类型 method_types 是个 char 指针，其实存储着方法的参数类型和返回值类型，即是 Type Encoding 编码。
+/// IMP 本质上是一个函数的指针
 struct objc_method {
     SEL _Nonnull method_name                                 OBJC2_UNAVAILABLE;
     char * _Nullable method_types                            OBJC2_UNAVAILABLE;

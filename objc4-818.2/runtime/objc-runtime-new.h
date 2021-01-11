@@ -1457,6 +1457,7 @@ struct class_rw_ext_t {
 
 struct class_rw_t {
     // Be warned that Symbolication knows the layout of this structure.
+    // 请注意 Symbolication 知道此结构的布局
     uint32_t flags;
     uint16_t witness;
 #if SUPPORT_INDEXED_ISA
@@ -1612,7 +1613,7 @@ public:
     void setData(class_rw_t *newData)
     {
         ASSERT(!data()  ||  (newData->flags & (RW_REALIZING | RW_FUTURE)));
-        // Set during realization or construction only. No locking needed.
+        // Set during realization or construction only. No locking needed.  仅在实现或构造期间设置。无需锁定。
         // Use a store-release fence because there may be concurrent
         // readers of data and data's contents.
         uintptr_t newBits = (bits & ~FAST_DATA_MASK) | (uintptr_t)newData;

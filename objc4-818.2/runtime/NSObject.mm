@@ -1933,7 +1933,7 @@ callAlloc(Class cls, bool checkNil, bool allocWithZone=false)
     }
 #endif
 
-    // No shortcuts available.
+    // No shortcuts available. 没有可用的快捷方式。
     if (allocWithZone) {
         return ((id(*)(id, SEL, struct _NSZone *))objc_msgSend)(cls, @selector(allocWithZone:), nil);
     }

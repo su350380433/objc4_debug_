@@ -514,9 +514,9 @@ isKnownClass(Class cls)
 
 /***********************************************************************
 * addClassTableEntry
-* Add a class to the table of all classes. If addMeta is true,
-* automatically adds the metaclass of the class as well.
-* Locking: runtimeLock must be held by the caller.
+* Add a class to the table of all classes. If addMeta is true, 将一个类添加到所有类的表中。 如果addMeta为true，
+* automatically adds the metaclass of the class as well. 也自动添加该类的元类。
+* Locking: runtimeLock must be held by the caller.      锁定：runtimeLock必须由调用方持有。
 **********************************************************************/
 static void
 addClassTableEntry(Class cls, bool addMeta = true)
@@ -525,6 +525,7 @@ addClassTableEntry(Class cls, bool addMeta = true)
 
     // This class is allowed to be a known class via the shared cache or via
     // data segments, but it is not allowed to be in the dynamic table already.
+//    可以通过共享缓存或数据段将此类设为已知类，但不允许该类已经存在于动态表中。
     auto &set = objc::allocatedClasses.get();
 
     ASSERT(set.find(cls) == set.end());
@@ -3223,7 +3224,7 @@ load_images(const char *path __unused, const struct mach_header *mh)
 
     recursive_mutex_locker_t lock(loadMethodLock);
 
-    // Discover load methods
+    // Discover load methods 发现Load 方法
     {
         mutex_locker_t lock2(runtimeLock);
         prepare_load_methods((const headerType *)mh);
@@ -3310,9 +3311,9 @@ bool mustReadClasses(header_info *hi, bool hasDyldRoots)
 
 
 /***********************************************************************
-* readClass
-* Read a class and metaclass as written by a compiler.
-* Returns the new class pointer. This could be: 
+* readClass  核心作用是对类进行首次初始化，其中包括分配读写数据内存空间，返回类的实际类结构。
+* Read a class and metaclass as written by a compiler.读取编译器编写的类和元类。
+* Returns the new class pointer. This could be: 返回新的类指针。 可能是：
 * - cls
 * - nil  (cls has a missing weak-linked superclass)
 * - something else (space for this class was reserved by a future class)
@@ -3883,6 +3884,7 @@ static void schedule_class_load(Class cls)
 }
 
 // Quick scan for +load methods that doesn't take a lock.
+// 快速扫描 +load方法，不加锁
 bool hasLoadMethods(const headerType *mhdr)
 {
     size_t count;
