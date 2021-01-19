@@ -2436,7 +2436,7 @@ void *objc_destructInstance(id obj)
 {
     if (obj) {
         Class isa = obj->getIsa();
-
+        // ✅如果有C++析构函数，则从运行相关函数
         if (isa->hasCxxDtor()) {
             object_cxxDestruct(obj);
         }

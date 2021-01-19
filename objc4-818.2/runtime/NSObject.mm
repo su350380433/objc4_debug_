@@ -320,14 +320,14 @@ objc_storeStrong(id *location, id obj)
 }
 
 
-// Update a weak variable.
-// If HaveOld is true, the variable has an existing value 
+// Update a weak variable.更新一个弱变量。
+// If HaveOld is true, the variable has an existing value 如果HaveOld为true，则该变量具有需要清除的现有值。 该值可能为零。
 //   that needs to be cleaned up. This value might be nil.
-// If HaveNew is true, there is a new value that needs to be 
+// If HaveNew is true, there is a new value that needs to be 如果HaveNew为true，则需要将一个新值分配给变量。 该值可能为零。
 //   assigned into the variable. This value might be nil.
-// If CrashIfDeallocating is true, the process is halted if newObj is 
+// If CrashIfDeallocating is true, the process is halted if newObj is 如果CrashIfDeallocating为true，则在newObj正在取消分配或newObj的类不支持弱引用时，该过程将暂停。
 //   deallocating or newObj's class does not support weak references. 
-//   If CrashIfDeallocating is false, nil is stored instead.
+//   If CrashIfDeallocating is false, nil is stored instead.如果CrashIfDeallocating为false，则存储nil。
 enum CrashIfDeallocating {
     DontCrashIfDeallocating = false, DoCrashIfDeallocating = true
 };
@@ -344,34 +344,38 @@ storeWeak(id *location, objc_object *newObj)
     SideTable *oldTable;
     SideTable *newTable;
 
-    // Acquire locks for old and new values.
-    // Order by lock address to prevent lock ordering problems. 
-    // Retry if the old value changes underneath us.
+    // Acquire locks for old and new values.获取旧值和新值的锁。
+    // Order by lock address to prevent lock ordering problems. 按锁地址排序以防止锁排序问题。
+    // Retry if the old value changes underneath us.重试旧值是否在我们下面改变。
  retry:
+    // ✅如果weak指针之前弱引用过一个obj，则将这个obj所对应的SideTable取出，赋值给oldTable
     if (haveOld) {
         oldObj = *location;
         oldTable = &SideTables()[oldObj];
     } else {
+        //✅ 没有弱引用过，则oldTable = nil
         oldTable = nil;
     }
+    // ✅如果weak指针要弱引用一个新的obj，则将该obj对应的SideTable取出，赋值给newTable
     if (haveNew) {
         newTable = &SideTables()[newObj];
     } else {
         newTable = nil;
     }
-
+    //✅ 加锁操作，防止多线程中竞争冲突
     SideTable::lockTwo<haveOld, haveNew>(oldTable, newTable);
-
+    //✅ location 应该与 oldObj 保持一致，如果不同，说明当前的 location 已经处理过 oldObj 可是又被其他线程所修改
     if (haveOld  &&  *location != oldObj) {
         SideTable::unlockTwo<haveOld, haveNew>(oldTable, newTable);
         goto retry;
     }
 
-    // Prevent a deadlock between the weak reference machinery
+    // Prevent a deadlock between the weak reference machinery  通过确保没有弱引用的对象具有未初始化的isa，可以防止弱引用机制和+初始化机制之间出现死锁。
     // and the +initialize machinery by ensuring that no 
     // weakly-referenced object has an un-+initialized isa.
     if (haveNew  &&  newObj) {
         Class cls = newObj->getIsa();
+        //✅ 如果cls还没有初始化，先初始化，再尝试设置弱引用
         if (cls != previouslyInitializedClass  &&  
             !((objc_class *)cls)->isInitialized()) 
         {
@@ -384,30 +388,35 @@ storeWeak(id *location, objc_object *newObj)
             // then we may proceed but it will appear initializing and 
             // not yet initialized to the check above.
             // Instead set previouslyInitializedClass to recognize it on retry.
+            //✅ 完成初始化后进行标记
             previouslyInitializedClass = cls;
-
+            //✅ newObj 初始化后，重新获取一遍newObj
             goto retry;
         }
     }
 
-    // Clean up old value, if any.
+    // Clean up old value, if any.  //weak指针是否已经指向了一个弱引用
+    //✅ 如果weak指针之前弱引用过别的对象oldObj，则调用weak_unregister_no_lock，在oldObj的weak_entry_t中移除该weak指针地址
     if (haveOld) {
         weak_unregister_no_lock(&oldTable->weak_table, oldObj, location);
     }
 
-    // Assign new value, if any.
+    // Assign new value, if any. weak指针是否需要指向一个新引用
     if (haveNew) {
+        //✅  调用weak_register_no_lock方法，将weak指针的地址记录到newObj对应的weak_entry_t中
         newObj = (objc_object *)
             weak_register_no_lock(&newTable->weak_table, (id)newObj, location, 
                                   crashIfDeallocating ? CrashIfDeallocating : ReturnNilIfDeallocating);
         // weak_register_no_lock returns nil if weak store should be rejected
 
-        // Set is-weakly-referenced bit in refcount table.
+        // Set is-weakly-referenced bit in refcount table.在引用计数表中设置弱引用位。
+        //✅ 更新newObj的isa指针的weakly_referenced bit标志位
         if (!newObj->isTaggedPointerOrNil()) {
             newObj->setWeaklyReferenced_nolock();
         }
 
-        // Do not set *location anywhere else. That would introduce a race.
+        // Do not set *location anywhere else. That would introduce a race.不要在其他地方设置 *location，否则会导致死锁
+        //✅ *location 赋值，也就是将weak指针直接指向了newObj，而且没有将newObj的引用计数+1
         *location = (id)newObj;
     }
     else {
@@ -416,7 +425,7 @@ storeWeak(id *location, objc_object *newObj)
     
     SideTable::unlockTwo<haveOld, haveNew>(oldTable, newTable);
 
-    // This must be called without the locks held, as it can invoke
+    // This must be called without the locks held, as it can invoke 必须在不持有锁的情况下调用它，因为它可以调用任意代码。 特别是，即使未实现_setWeaklyReferenced，resolveInstanceMethod：也可能会并且可能会回调弱引用机制。
     // arbitrary code. In particular, even if _setWeaklyReferenced
     // is not implemented, resolveInstanceMethod: may be, and may
     // call back into the weak reference machinery.

@@ -93,6 +93,15 @@ public:
 #if defined(ISA_BITFIELD)
     struct {
         ISA_BITFIELD;  // defined in isa.h
+        /*
+         #     define ISA_BITFIELD                                                      \
+                 uintptr_t nonpointer        : 1;                                       \
+                 uintptr_t has_assoc         : 1;                                       \
+                 uintptr_t weakly_referenced : 1;                                       \
+                 uintptr_t shiftcls_and_sig  : 52;                                      \
+                 uintptr_t has_sidetable_rc  : 1;                                       \
+                 uintptr_t extra_rc          : 8
+         */
     };
 
     bool isDeallocating() {

@@ -50,6 +50,8 @@
 		39ABD72412F0B61800D1054C /* objc-weak.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39ABD72012F0B61800D1054C /* objc-weak.mm */; };
 		502ADD4425A84CF700AFC87B /* libobjc.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC0630554660B00DB518D /* libobjc.A.dylib */; };
 		502ADD5525A8506B00AFC87B /* Person_test.m in Sources */ = {isa = PBXBuildFile; fileRef = 502ADD5425A8506B00AFC87B /* Person_test.m */; };
+		5066BE6525AD7607003E04F3 /* DynamicAddClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5066BE6425AD7607003E04F3 /* DynamicAddClass.m */; };
+		5066BF9B25AD9643003E04F3 /* Person_test+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 5066BF9A25AD9643003E04F3 /* Person_test+Test.m */; };
 		6E1475EA21DFDB1B001357EA /* llvm-AlignOf.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E1475E521DFDB1A001357EA /* llvm-AlignOf.h */; };
 		6E1475EB21DFDB1B001357EA /* llvm-DenseMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E1475E621DFDB1B001357EA /* llvm-DenseMap.h */; };
 		6E1475EC21DFDB1B001357EA /* llvm-DenseMapInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E1475E721DFDB1B001357EA /* llvm-DenseMapInfo.h */; };
@@ -230,6 +232,10 @@
 		39ABD72012F0B61800D1054C /* objc-weak.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-weak.mm"; path = "runtime/objc-weak.mm"; sourceTree = "<group>"; };
 		502ADD5325A8506B00AFC87B /* Person_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person_test.h; sourceTree = "<group>"; };
 		502ADD5425A8506B00AFC87B /* Person_test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person_test.m; sourceTree = "<group>"; };
+		5066BE6325AD7607003E04F3 /* DynamicAddClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicAddClass.h; sourceTree = "<group>"; };
+		5066BE6425AD7607003E04F3 /* DynamicAddClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicAddClass.m; sourceTree = "<group>"; };
+		5066BF9925AD9643003E04F3 /* Person_test+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Person_test+Test.h"; sourceTree = "<group>"; };
+		5066BF9A25AD9643003E04F3 /* Person_test+Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Person_test+Test.m"; sourceTree = "<group>"; };
 		6E1475E521DFDB1A001357EA /* llvm-AlignOf.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = "llvm-AlignOf.h"; path = "runtime/llvm-AlignOf.h"; sourceTree = "<group>"; tabWidth = 2; };
 		6E1475E621DFDB1B001357EA /* llvm-DenseMap.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = "llvm-DenseMap.h"; path = "runtime/llvm-DenseMap.h"; sourceTree = "<group>"; tabWidth = 2; };
 		6E1475E721DFDB1B001357EA /* llvm-DenseMapInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = "llvm-DenseMapInfo.h"; path = "runtime/llvm-DenseMapInfo.h"; sourceTree = "<group>"; tabWidth = 2; };
@@ -390,9 +396,13 @@
 		0466411325A4991B002440A8 /* KCObjcBuild */ = {
 			isa = PBXGroup;
 			children = (
+				5066BFAA25AD99D8003E04F3 /* Weak置空原理 */,
 				0466411425A4991B002440A8 /* main.m */,
+				5066BF9825AD961A003E04F3 /* Cageory */,
 				502ADD5325A8506B00AFC87B /* Person_test.h */,
 				502ADD5425A8506B00AFC87B /* Person_test.m */,
+				5066BE6325AD7607003E04F3 /* DynamicAddClass.h */,
+				5066BE6425AD7607003E04F3 /* DynamicAddClass.m */,
 			);
 			path = KCObjcBuild;
 			sourceTree = "<group>";
@@ -479,6 +489,22 @@
 				0466411225A4991B002440A8 /* KCObjcBuild */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5066BF9825AD961A003E04F3 /* Cageory */ = {
+			isa = PBXGroup;
+			children = (
+				5066BF9925AD9643003E04F3 /* Person_test+Test.h */,
+				5066BF9A25AD9643003E04F3 /* Person_test+Test.m */,
+			);
+			path = Cageory;
+			sourceTree = "<group>";
+		};
+		5066BFAA25AD99D8003E04F3 /* Weak置空原理 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Weak置空原理";
 			sourceTree = "<group>";
 		};
 		6EF877D82325D62600963DBB /* objcdt */ = {
@@ -875,6 +901,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				502ADD5525A8506B00AFC87B /* Person_test.m in Sources */,
+				5066BE6525AD7607003E04F3 /* DynamicAddClass.m in Sources */,
+				5066BF9B25AD9643003E04F3 /* Person_test+Test.m in Sources */,
 				0466411525A4991B002440A8 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

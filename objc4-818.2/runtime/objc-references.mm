@@ -140,7 +140,7 @@ _object_get_associative_reference(id object, const void *key)
     ObjcAssociation association{};
 
     {
-        AssociationsManager manager;
+        AssociationsManager manager;// 关联对象的管理类
         AssociationsHashMap &associations(manager.get());
         AssociationsHashMap::iterator i = associations.find((objc_object *)object);
         if (i != associations.end()) {
@@ -159,7 +159,7 @@ _object_get_associative_reference(id object, const void *key)
 void
 _object_set_associative_reference(id object, const void *key, id value, uintptr_t policy)
 {
-    // This code used to work when nil was passed for object and key. Some code
+    // This code used to work when nil was passed for object and key. Some code 当为对象和键传递nil时，此代码可以正常工作。 某些代码可能依赖于此而不会崩溃。 明确检查并处理。
     // probably relies on that to not crash. Check and handle it explicitly.
     // rdar://problem/44094390
     if (!object && !value) return;
@@ -170,13 +170,13 @@ _object_set_associative_reference(id object, const void *key, id value, uintptr_
     DisguisedPtr<objc_object> disguised{(objc_object *)object};
     ObjcAssociation association{policy, value};
 
-    // retain the new value (if any) outside the lock.
+    // retain the new value (if any) outside the lock. 在锁之外保留新值（如果有）。
     association.acquireValue();
 
     bool isFirstAssociation = false;
     {
-        AssociationsManager manager;
-        AssociationsHashMap &associations(manager.get());
+        AssociationsManager manager;// 关联对象的管理类
+        AssociationsHashMap &associations(manager.get());// 获取关联的 HashMap -> 存储当前关联对象
 
         if (value) {
             auto refs_result = associations.try_emplace(disguised, ObjectAssociationMap{});

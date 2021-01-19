@@ -13,13 +13,26 @@
 
 #import <Foundation/Foundation.h>
 #import "Person_test.h"
-
+#import <objc/runtime.h>
+#import <objc/message.h>
+#import "DynamicAddClass.h"
+#import "Person_test+Test.h"
 int main(int argc, const char * argv[]) {
-    Person_test *objc = [[Person_test alloc] init];
-    objc.name = @"what is your name xx=";
-    objc.age = 101;
-    
-    NSLog(@"%@",objc.name);
-    NSLog(@"%ld",objc.age);
+    @autoreleasepool {
+        //动态添加 类
+//        [DynamicAddClass dynamicAddClass];
+        
+        // cagetory 管理对象
+        Person_test *person = [[Person_test alloc] init];
+//        person.secondName = @"良锦";
+        person.name = @"苏";
+        person.age = 31;
+        
+        //weak置空原理
+        id __weak object = person;
+        
+        id __weak object2 = person;
+
+    }
     return 0;
 }

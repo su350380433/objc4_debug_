@@ -564,8 +564,18 @@ objc_object::clearDeallocating()
 inline void
 objc_object::rootDealloc()
 {
+    //✅如果是Tagged Pointer，就直接返回
     if (isTaggedPointer()) return;  // fixme necessary?
 
+    /*
+       ✅如果同时满足
+       1. 是优化过的isa、
+       2. 没有被weak指针引用过、
+       3. 没有关联对象、
+       4. 没有C++析构函数、
+       5. 没有sideTable，
+            就可以直接释放内存free()
+       */
     if (fastpath(isa.nonpointer                     &&
                  !isa.weakly_referenced             &&
                  !isa.has_assoc                     &&
@@ -579,7 +589,7 @@ objc_object::rootDealloc()
         assert(!sidetable_present());
         free(this);
     } 
-    else {
+    else {//✅否则的话就需要通过下面的函数处理
         object_dispose((id)this);
     }
 }

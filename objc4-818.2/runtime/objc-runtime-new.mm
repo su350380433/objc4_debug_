@@ -7970,7 +7970,7 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
 {
     ASSERT(cls->isRealized());
 
-    // Read class's info bits all at once for performance
+    // Read class's info bits all at once for performance 一次性读取类的二进制信息，提高 性能
     bool hasCxxCtor = cxxConstruct && cls->hasCxxCtor();
     bool hasCxxDtor = cls->hasCxxDtor();
     bool fast = cls->canAllocNonpointer();
@@ -7981,7 +7981,7 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
 
     id obj;
     if (zone) {
-        obj = (id)malloc_zone_calloc((malloc_zone_t *)zone, 1, size);
+        obj = (id)malloc_zone_calloc((malloc_zone_t *)zone, 1, size);//申请空间
     } else {
         obj = (id)calloc(1, size);
     }
@@ -7995,7 +7995,7 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     if (!zone && fast) {
         obj->initInstanceIsa(cls, hasCxxDtor);
     } else {
-        // Use raw pointer isa on the assumption that they might be
+        // Use raw pointer isa on the assumption that they might be 假设他们可能会对区域或RR做一些奇怪的事情，请使用原始指针isa
         // doing something weird with the zone or RR.
         obj->initIsa(cls);
     }
@@ -8126,8 +8126,11 @@ void *objc_destructInstance(id obj)
         bool assoc = obj->hasAssociatedObjects();
 
         // This order is important.
+        // ✅ 如果有C++析构函数，则从运行相关函数
         if (cxx) object_cxxDestruct(obj);
+        // ✅ 如果有关联对象，则移除所有的关联对象，并将其自身从Association Manager的map中移除
         if (assoc) _object_remove_assocations(obj, /*deallocating*/true);
+        // ✅ 继续清理其它相关的引用f
         obj->clearDeallocating();
     }
 

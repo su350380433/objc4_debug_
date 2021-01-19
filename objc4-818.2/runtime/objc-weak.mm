@@ -105,14 +105,16 @@ static void grow_refs_and_insert(weak_entry_t *entry,
  * Add the given referrer to set of weak pointers in this entry.
  * Does not perform duplicate checking (b/c weak pointers are never
  * added to a set twice). 
- *
+ * ✅主要是找到弱引用对象的对应的weak_entry哈希数组中，基本就是个遍历插入的过程
  * @param entry The entry holding the set of weak pointers. 
  * @param new_referrer The new weak pointer to be added.
  */
 static void append_referrer(weak_entry_t *entry, objc_object **new_referrer)
 {
+    // ✅如果weak_entry 使用静态数组 inline_referrers
     if (! entry->out_of_line()) {
         // Try to insert inline.
+        //✅ 尝试将 referrer 插入数组
         for (size_t i = 0; i < WEAK_INLINE_COUNT; i++) {
             if (entry->inline_referrers[i] == nil) {
                 entry->inline_referrers[i] = new_referrer;
@@ -121,6 +123,7 @@ static void append_referrer(weak_entry_t *entry, objc_object **new_referrer)
         }
 
         // Couldn't insert inline. Allocate out of line.
+        // ✅ 如果inline_referrers的位置已经存满了，则要转型为 referrers，动态数组
         weak_referrer_t *new_referrers = (weak_referrer_t *)
             calloc(WEAK_INLINE_COUNT, sizeof(weak_referrer_t));
         // This constructed table is invalid, but grow_refs_and_insert
@@ -136,10 +139,12 @@ static void append_referrer(weak_entry_t *entry, objc_object **new_referrer)
     }
 
     ASSERT(entry->out_of_line());
-
+    //  ✅如果动态数组中元素个数大于或等于数组总空间的3/4，则扩展数组空间为当前长度的一倍，然后将 referrer 插入数组
     if (entry->num_refs >= TABLE_SIZE(entry) * 3/4) {
         return grow_refs_and_insert(entry, new_referrer);
     }
+    // ✅如果不需要扩容，直接插入到weak_entry中
+    // ✅& (entry->mask) 保证 begin 的位置只能大于或等于数组的长度
     size_t begin = w_hash_pointer(new_referrer) & (entry->mask);
     size_t index = begin;
     size_t hash_displacement = 0;
@@ -205,8 +210,8 @@ static void remove_referrer(weak_entry_t *entry, objc_object **old_referrer)
 }
 
 /** 
- * Add new_entry to the object's table of weak references.
- * Does not check whether the referent is already in the table.
+ * Add new_entry to the object's table of weak references.将new_entry添加到对象的弱引用表中。
+ * Does not check whether the referent is already in the table. 不检查引用对象是否已在表中。
  */
 static void weak_entry_insert(weak_table_t *weak_table, weak_entry_t *new_entry)
 {
@@ -343,20 +348,32 @@ weak_entry_for_referent(weak_table_t *weak_table, objc_object *referent)
  * @param weak_table The global weak table.
  * @param referent The object.
  * @param referrer The weak reference.
+ *
+ * ✅如果weak指针在指向obj之前，已经弱引用了其他的对象，则需要先将weak指针从其他对象的weak_entry_t的hash数组中移除。
+ * 在storeWeak方法中会调用weak_unregister_no_lock函数来做移除操作，
+ * 我们来看一下weak_unregister_no_lock函数源码
+ *
+ * ✅ weak_unregister_no_lock函数首先会在weak_table中找出以前被弱引用的对象referent对应的weak_entry_t，
+ * 在weak_entry_t中移除被弱引用的对象referrer。移除元素后，判断此时weak_entry_t中是否还有元素。
+ * 如果此时weak_entry_t已经没有元素了，则需要将weak_entry_t从weak_table中移除。
+
  */
 void
 weak_unregister_no_lock(weak_table_t *weak_table, id referent_id, 
                         id *referrer_id)
 {
+    //✅ 拿到以前弱引用的对象和对象的地址
     objc_object *referent = (objc_object *)referent_id;
     objc_object **referrer = (objc_object **)referrer_id;
 
     weak_entry_t *entry;
 
     if (!referent) return;
-
+    //✅ 查找到以前弱引用的对象 referent 所对应的 weak_entry_t
     if ((entry = weak_entry_for_referent(weak_table, referent))) {
+        //✅在以前弱引用的对象 referent 所对应的 weak_entry_t 的 hash 数组中，移除弱引用 referrer
         remove_referrer(entry, referrer);
+        //✅ 移除元素之后， 要检查一下 weak_entry_t 的 hash 数组是否已经空了
         bool empty = true;
         if (entry->out_of_line()  &&  entry->num_refs != 0) {
             empty = false;
@@ -369,7 +386,7 @@ weak_unregister_no_lock(weak_table_t *weak_table, id referent_id,
                 }
             }
         }
-
+        //✅ 如果 weak_entry_t 的hash数组已经空了，则需要将 weak_entry_t 从 weak_table 中移除
         if (empty) {
             weak_entry_remove(weak_table, entry);
         }
@@ -382,7 +399,8 @@ weak_unregister_no_lock(weak_table_t *weak_table, id referent_id,
 /** 
  * Registers a new (object, weak pointer) pair. Creates a new weak
  * object entry if it does not exist.
- * 
+ * 如果可以被弱引用，则将被弱引用对象所在的weak_table中的weak_entry_t哈希数组中取出对应的weak_entry_t，如果weak_entry_t不存在，则会新建一个。然后将指向被弱引用对象地址的指针referrer通过函数append_referrer插入到对应的weak_entry_t引用数组。至此就完成了弱引用。
+ 
  * @param weak_table The global weak table.
  * @param referent The object pointed to by the weak reference.
  * @param referrer The weak pointer address.
@@ -391,12 +409,15 @@ id
 weak_register_no_lock(weak_table_t *weak_table, id referent_id, 
                       id *referrer_id, WeakRegisterDeallocatingOptions deallocatingOptions)
 {
-    objc_object *referent = (objc_object *)referent_id;
+    //✅首先获取需要弱引用对象
+    objc_object *referent = (objc_object *)referent_id;//取得弱引用对象
     objc_object **referrer = (objc_object **)referrer_id;
+    //✅ 如果被弱引用对象referent为nil 或者被弱引用对象采用了TaggedPointer计数方式，则直接返回
 
     if (referent->isTaggedPointerOrNil()) return referent_id;
 
-    // ensure that the referenced object is viable
+    // ensure that the referenced object is viable 确保引用的对象是可行的
+    // ✅ 确保被引用的对象可用（没有在析构，同时应该支持weak弱引用）
     if (deallocatingOptions == ReturnNilIfDeallocating ||
         deallocatingOptions == CrashIfDeallocating) {
         bool deallocating;
@@ -416,8 +437,8 @@ weak_register_no_lock(weak_table_t *weak_table, id referent_id,
             deallocating =
             ! (*allowsWeakReference)(referent, @selector(allowsWeakReference));
         }
-
-        if (deallocating) {
+        //✅ 如果是正在析构的对象，那么不能够被弱引用
+        if (deallocating) {//如果正在析构或者释放，那么不能被肉引用
             if (deallocatingOptions == CrashIfDeallocating) {
                 _objc_fatal("Cannot form weak reference to instance (%p) of "
                             "class %s. It is possible that this object was "
@@ -429,12 +450,15 @@ weak_register_no_lock(weak_table_t *weak_table, id referent_id,
         }
     }
 
-    // now remember it and where it is being stored
+    // now remember it and where it is being stored 现在记住它以及它的存储位置
+    //  ✅ 在 weak_table 中找到被弱引用对象 referent 对应的 weak_entry,并将 referrer 加入到 weak_entry 中
     weak_entry_t *entry;
     if ((entry = weak_entry_for_referent(weak_table, referent))) {
+        //✅ 如果能找到 weak_entry,则讲 referrer 插入到 weak_entry 中
         append_referrer(entry, referrer);
     } 
     else {
+        //✅ 如果找不到 weak_entry，就新建一个
         weak_entry_t new_entry(referent, referrer);
         weak_grow_maybe(weak_table);
         weak_entry_insert(weak_table, &new_entry);
