@@ -20,7 +20,10 @@
 @end
 
 @implementation ShopModuleViewController
-
++ (void)load
+{
+    NSLog(@"%s",__func__);
+}
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];

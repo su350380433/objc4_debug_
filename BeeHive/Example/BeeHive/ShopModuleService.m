@@ -12,7 +12,10 @@
 typedef void (^CTUrlRouterCallbackBlock)(NSDictionary *info);
 
 @implementation ShopModuleService
-
++ (void)load
+{
+    NSLog(@"%s",__func__);
+}
 - (UIViewController *)nativeFetchDetailViewController:(NSDictionary *)params
 {
     // 因为action是从属于ModuleA的，所以action直接可以使用ModuleA里的所有声明

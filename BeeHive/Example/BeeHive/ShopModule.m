@@ -13,7 +13,10 @@
 
 @end
 @implementation ShopModule
-
++ (void)load
+{
+    NSLog(@"%s",__func__);
+}
 - (id)init{
     if (self = [super init])
     {

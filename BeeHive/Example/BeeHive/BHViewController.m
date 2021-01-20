@@ -25,7 +25,10 @@
 
 
 @implementation BHViewController
-
++ (void)load
+{
+    NSLog(@"%s",__func__);
+}
 -(instancetype)init
 {
     self = [super init];

@@ -10,8 +10,68 @@
 #import "BeeHive.h"
 
 
-@implementation BHTradeViewController
+@implementation ViewController
+- (void)viewDidLoad {
+    [featureA step1];
+    [featureB step1];
+    [featureC step1];
+    
+}
+- (void)callback_xxx {
+    [featureA step2];
+    [featureB step2];
+    
+}
+- (void)callback_yyy {
+    [featureC step2];
+    
+}
+@end
 
+
+@implementation FeatureA
+
+- (void)recvViewDidLoad{
+    [self step1];
+}
+
+- (void)recvCallback_xxx {
+    [self step2];
+}
+
+@end
+
+
+
+@implementation FeatureB
+- (void)recvViewDidLoad {
+    [self step1];
+    
+}
+- (void)recvCallback_xxx {
+    [self step2];
+}
+@end
+
+@implementation FeatureC
+- (void)recvViewDidLoad {
+    [self step1];
+    
+}
+- (void)recvCallback_yyy {
+    [self step2];
+    
+}
+@end
+
+
+
+
+@implementation BHTradeViewController
++ (void)load
+{
+    NSLog(@"%s",__func__);
+}
 @synthesize itemId=_itemId;
 
 - (void)viewDidLoad

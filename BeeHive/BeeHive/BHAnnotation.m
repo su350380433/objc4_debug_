@@ -56,6 +56,7 @@ static void dyld_callback(const struct mach_header *mhp, intptr_t vmaddr_slide)
 __attribute__((constructor))
 //该函数的实现体里使用了_dyld_register_func_for_add_image函数，现在看看该函数的作用。
 void initProphet() {
+    NSLog(@"dyld_callback");
     _dyld_register_func_for_add_image(dyld_callback);
 }
 

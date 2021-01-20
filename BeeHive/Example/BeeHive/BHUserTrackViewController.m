@@ -19,7 +19,10 @@
 
 
 @implementation BHUserTrackViewController
-
++ (void)load
+{
+    NSLog(@"%s",__func__);
+}
 +(BOOL)singleton
 {
     return NO;

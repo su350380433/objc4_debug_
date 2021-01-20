@@ -17,7 +17,10 @@
 @end
 
 @implementation HomeModule
-
++ (void)load
+{
+    NSLog(@"%s",__func__);
+}
 -(void)modInit:(BHContext *)context
 {
     switch (context.env) {
