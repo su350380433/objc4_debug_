@@ -259,6 +259,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = QiRecursiveDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -276,6 +277,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = QiRecursiveDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

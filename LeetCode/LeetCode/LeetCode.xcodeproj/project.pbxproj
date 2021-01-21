@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		50B79DEF25B823A100A11F1E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B79DEE25B823A100A11F1E /* AppDelegate.m */; };
+		50B79DF225B823A100A11F1E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B79DF125B823A100A11F1E /* SceneDelegate.m */; };
+		50B79DF525B823A100A11F1E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B79DF425B823A100A11F1E /* ViewController.m */; };
+		50B79DF825B823A100A11F1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B79DF625B823A100A11F1E /* Main.storyboard */; };
+		50B79DFA25B823A200A11F1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50B79DF925B823A200A11F1E /* Assets.xcassets */; };
+		50B79DFD25B823A200A11F1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B79DFB25B823A200A11F1E /* LaunchScreen.storyboard */; };
+		50B79E0025B823A200A11F1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B79DFF25B823A200A11F1E /* main.m */; };
+		50B79E0A25B823A200A11F1E /* LeetCodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B79E0925B823A200A11F1E /* LeetCodeTests.m */; };
+		50B79E1525B823A300A11F1E /* LeetCodeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B79E1425B823A300A11F1E /* LeetCodeUITests.m */; };
+		50B79E2725B823D500A11F1E /* 反转字符串.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B79E2625B823D500A11F1E /* 反转字符串.m */; };
+		50B79E2D25B82CCF00A11F1E /* 交互值.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B79E2C25B82CCF00A11F1E /* 交互值.m */; };
+		50B79E3325B82FE000A11F1E /* 有序数组合并.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B79E3225B82FE000A11F1E /* 有序数组合并.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		50B79E0625B823A200A11F1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50B79DE225B823A100A11F1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50B79DE925B823A100A11F1E;
+			remoteInfo = LeetCode;
+		};
+		50B79E1125B823A300A11F1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50B79DE225B823A100A11F1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50B79DE925B823A100A11F1E;
+			remoteInfo = LeetCode;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		50B79DEA25B823A100A11F1E /* LeetCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeetCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		50B79DED25B823A100A11F1E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		50B79DEE25B823A100A11F1E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		50B79DF025B823A100A11F1E /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		50B79DF125B823A100A11F1E /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		50B79DF325B823A100A11F1E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		50B79DF425B823A100A11F1E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		50B79DF725B823A100A11F1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		50B79DF925B823A200A11F1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		50B79DFC25B823A200A11F1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		50B79DFE25B823A200A11F1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50B79DFF25B823A200A11F1E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		50B79E0525B823A200A11F1E /* LeetCodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeetCodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		50B79E0925B823A200A11F1E /* LeetCodeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeetCodeTests.m; sourceTree = "<group>"; };
+		50B79E0B25B823A200A11F1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50B79E1025B823A300A11F1E /* LeetCodeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeetCodeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		50B79E1425B823A300A11F1E /* LeetCodeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeetCodeUITests.m; sourceTree = "<group>"; };
+		50B79E1625B823A300A11F1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50B79E2525B823D500A11F1E /* 反转字符串.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "反转字符串.h"; sourceTree = "<group>"; };
+		50B79E2625B823D500A11F1E /* 反转字符串.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "反转字符串.m"; sourceTree = "<group>"; };
+		50B79E2B25B82CCF00A11F1E /* 交互值.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "交互值.h"; sourceTree = "<group>"; };
+		50B79E2C25B82CCF00A11F1E /* 交互值.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "交互值.m"; sourceTree = "<group>"; };
+		50B79E3125B82FE000A11F1E /* 有序数组合并.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "有序数组合并.h"; sourceTree = "<group>"; };
+		50B79E3225B82FE000A11F1E /* 有序数组合并.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "有序数组合并.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50B79DE725B823A100A11F1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50B79E0225B823A200A11F1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50B79E0D25B823A300A11F1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		50B79DE125B823A100A11F1E = {
+			isa = PBXGroup;
+			children = (
+				50B79DEC25B823A100A11F1E /* LeetCode */,
+				50B79E0825B823A200A11F1E /* LeetCodeTests */,
+				50B79E1325B823A300A11F1E /* LeetCodeUITests */,
+				50B79DEB25B823A100A11F1E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		50B79DEB25B823A100A11F1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50B79DEA25B823A100A11F1E /* LeetCode.app */,
+				50B79E0525B823A200A11F1E /* LeetCodeTests.xctest */,
+				50B79E1025B823A300A11F1E /* LeetCodeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50B79DEC25B823A100A11F1E /* LeetCode */ = {
+			isa = PBXGroup;
+			children = (
+				50B79DED25B823A100A11F1E /* AppDelegate.h */,
+				50B79DEE25B823A100A11F1E /* AppDelegate.m */,
+				50B79DF025B823A100A11F1E /* SceneDelegate.h */,
+				50B79DF125B823A100A11F1E /* SceneDelegate.m */,
+				50B79DF325B823A100A11F1E /* ViewController.h */,
+				50B79DF425B823A100A11F1E /* ViewController.m */,
+				50B79DF625B823A100A11F1E /* Main.storyboard */,
+				50B79DF925B823A200A11F1E /* Assets.xcassets */,
+				50B79DFB25B823A200A11F1E /* LaunchScreen.storyboard */,
+				50B79DFE25B823A200A11F1E /* Info.plist */,
+				50B79DFF25B823A200A11F1E /* main.m */,
+				50B79E2525B823D500A11F1E /* 反转字符串.h */,
+				50B79E2625B823D500A11F1E /* 反转字符串.m */,
+				50B79E2B25B82CCF00A11F1E /* 交互值.h */,
+				50B79E2C25B82CCF00A11F1E /* 交互值.m */,
+				50B79E3125B82FE000A11F1E /* 有序数组合并.h */,
+				50B79E3225B82FE000A11F1E /* 有序数组合并.m */,
+			);
+			path = LeetCode;
+			sourceTree = "<group>";
+		};
+		50B79E0825B823A200A11F1E /* LeetCodeTests */ = {
+			isa = PBXGroup;
+			children = (
+				50B79E0925B823A200A11F1E /* LeetCodeTests.m */,
+				50B79E0B25B823A200A11F1E /* Info.plist */,
+			);
+			path = LeetCodeTests;
+			sourceTree = "<group>";
+		};
+		50B79E1325B823A300A11F1E /* LeetCodeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				50B79E1425B823A300A11F1E /* LeetCodeUITests.m */,
+				50B79E1625B823A300A11F1E /* Info.plist */,
+			);
+			path = LeetCodeUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50B79DE925B823A100A11F1E /* LeetCode */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50B79E1925B823A300A11F1E /* Build configuration list for PBXNativeTarget "LeetCode" */;
+			buildPhases = (
+				50B79DE625B823A100A11F1E /* Sources */,
+				50B79DE725B823A100A11F1E /* Frameworks */,
+				50B79DE825B823A100A11F1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LeetCode;
+			productName = LeetCode;
+			productReference = 50B79DEA25B823A100A11F1E /* LeetCode.app */;
+			productType = "com.apple.product-type.application";
+		};
+		50B79E0425B823A200A11F1E /* LeetCodeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50B79E1C25B823A300A11F1E /* Build configuration list for PBXNativeTarget "LeetCodeTests" */;
+			buildPhases = (
+				50B79E0125B823A200A11F1E /* Sources */,
+				50B79E0225B823A200A11F1E /* Frameworks */,
+				50B79E0325B823A200A11F1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				50B79E0725B823A200A11F1E /* PBXTargetDependency */,
+			);
+			name = LeetCodeTests;
+			productName = LeetCodeTests;
+			productReference = 50B79E0525B823A200A11F1E /* LeetCodeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		50B79E0F25B823A300A11F1E /* LeetCodeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50B79E1F25B823A300A11F1E /* Build configuration list for PBXNativeTarget "LeetCodeUITests" */;
+			buildPhases = (
+				50B79E0C25B823A300A11F1E /* Sources */,
+				50B79E0D25B823A300A11F1E /* Frameworks */,
+				50B79E0E25B823A300A11F1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				50B79E1225B823A300A11F1E /* PBXTargetDependency */,
+			);
+			name = LeetCodeUITests;
+			productName = LeetCodeUITests;
+			productReference = 50B79E1025B823A300A11F1E /* LeetCodeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		50B79DE225B823A100A11F1E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					50B79DE925B823A100A11F1E = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					50B79E0425B823A200A11F1E = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 50B79DE925B823A100A11F1E;
+					};
+					50B79E0F25B823A300A11F1E = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 50B79DE925B823A100A11F1E;
+					};
+				};
+			};
+			buildConfigurationList = 50B79DE525B823A100A11F1E /* Build configuration list for PBXProject "LeetCode" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 50B79DE125B823A100A11F1E;
+			productRefGroup = 50B79DEB25B823A100A11F1E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50B79DE925B823A100A11F1E /* LeetCode */,
+				50B79E0425B823A200A11F1E /* LeetCodeTests */,
+				50B79E0F25B823A300A11F1E /* LeetCodeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		50B79DE825B823A100A11F1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50B79DFD25B823A200A11F1E /* LaunchScreen.storyboard in Resources */,
+				50B79DFA25B823A200A11F1E /* Assets.xcassets in Resources */,
+				50B79DF825B823A100A11F1E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50B79E0325B823A200A11F1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50B79E0E25B823A300A11F1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		50B79DE625B823A100A11F1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50B79E2D25B82CCF00A11F1E /* 交互值.m in Sources */,
+				50B79DF525B823A100A11F1E /* ViewController.m in Sources */,
+				50B79E3325B82FE000A11F1E /* 有序数组合并.m in Sources */,
+				50B79DEF25B823A100A11F1E /* AppDelegate.m in Sources */,
+				50B79E2725B823D500A11F1E /* 反转字符串.m in Sources */,
+				50B79E0025B823A200A11F1E /* main.m in Sources */,
+				50B79DF225B823A100A11F1E /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50B79E0125B823A200A11F1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50B79E0A25B823A200A11F1E /* LeetCodeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50B79E0C25B823A300A11F1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50B79E1525B823A300A11F1E /* LeetCodeUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		50B79E0725B823A200A11F1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50B79DE925B823A100A11F1E /* LeetCode */;
+			targetProxy = 50B79E0625B823A200A11F1E /* PBXContainerItemProxy */;
+		};
+		50B79E1225B823A300A11F1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50B79DE925B823A100A11F1E /* LeetCode */;
+			targetProxy = 50B79E1125B823A300A11F1E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		50B79DF625B823A100A11F1E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50B79DF725B823A100A11F1E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		50B79DFB25B823A200A11F1E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50B79DFC25B823A200A11F1E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		50B79E1725B823A300A11F1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		50B79E1825B823A300A11F1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		50B79E1A25B823A300A11F1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LeetCode/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.linggan.test.LeetCode;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		50B79E1B25B823A300A11F1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LeetCode/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.linggan.test.LeetCode;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		50B79E1D25B823A300A11F1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LeetCodeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.linggan.test.LeetCodeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LeetCode.app/LeetCode";
+			};
+			name = Debug;
+		};
+		50B79E1E25B823A300A11F1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LeetCodeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.linggan.test.LeetCodeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LeetCode.app/LeetCode";
+			};
+			name = Release;
+		};
+		50B79E2025B823A300A11F1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LeetCodeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.linggan.test.LeetCodeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LeetCode;
+			};
+			name = Debug;
+		};
+		50B79E2125B823A300A11F1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LeetCodeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.linggan.test.LeetCodeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LeetCode;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50B79DE525B823A100A11F1E /* Build configuration list for PBXProject "LeetCode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50B79E1725B823A300A11F1E /* Debug */,
+				50B79E1825B823A300A11F1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50B79E1925B823A300A11F1E /* Build configuration list for PBXNativeTarget "LeetCode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50B79E1A25B823A300A11F1E /* Debug */,
+				50B79E1B25B823A300A11F1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50B79E1C25B823A300A11F1E /* Build configuration list for PBXNativeTarget "LeetCodeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50B79E1D25B823A300A11F1E /* Debug */,
+				50B79E1E25B823A300A11F1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50B79E1F25B823A300A11F1E /* Build configuration list for PBXNativeTarget "LeetCodeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50B79E2025B823A300A11F1E /* Debug */,
+				50B79E2125B823A300A11F1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 50B79DE225B823A100A11F1E /* Project object */;
+}

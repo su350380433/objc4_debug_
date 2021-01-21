@@ -27,7 +27,7 @@
         return num;
     }
 
-    return [self func1:(num + 1)];// 尾调用优化：栈帧可以复用，一直使用同一块栈内存。
+    return [self func1:(num + 2)];// 尾调用优化：栈帧可以复用，一直使用同一块栈内存。
 }
 
 
