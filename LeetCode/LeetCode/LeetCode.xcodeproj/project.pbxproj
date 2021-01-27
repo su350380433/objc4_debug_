@@ -19,6 +19,11 @@
 		50B79E2725B823D500A11F1E /* 反转字符串.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B79E2625B823D500A11F1E /* 反转字符串.m */; };
 		50B79E2D25B82CCF00A11F1E /* 交互值.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B79E2C25B82CCF00A11F1E /* 交互值.m */; };
 		50B79E3325B82FE000A11F1E /* 有序数组合并.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B79E3225B82FE000A11F1E /* 有序数组合并.m */; };
+		50DE118025BEC04800AD798F /* LISRecursion.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DE117F25BEC04800AD798F /* LISRecursion.m */; };
+		50DE122425BFA22000AD798F /* LengthOfSubstring.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DE122325BFA22000AD798F /* LengthOfSubstring.m */; };
+		50DE122F25BFAD3900AD798F /* FindMedianSortedArrays.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DE122E25BFAD3900AD798F /* FindMedianSortedArrays.m */; };
+		50DE123725BFC3E400AD798F /* BinarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DE123625BFC3E400AD798F /* BinarySearch.m */; };
+		50DE123E25C0341C00AD798F /* HammingWeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DE123D25C0341C00AD798F /* HammingWeight.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +68,17 @@
 		50B79E2C25B82CCF00A11F1E /* 交互值.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "交互值.m"; sourceTree = "<group>"; };
 		50B79E3125B82FE000A11F1E /* 有序数组合并.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "有序数组合并.h"; sourceTree = "<group>"; };
 		50B79E3225B82FE000A11F1E /* 有序数组合并.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "有序数组合并.m"; sourceTree = "<group>"; };
+		50DE117E25BEC04800AD798F /* LISRecursion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LISRecursion.h; sourceTree = "<group>"; };
+		50DE117F25BEC04800AD798F /* LISRecursion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LISRecursion.m; sourceTree = "<group>"; };
+		50DE118725BECD4000AD798F /* 动态规范总结.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "动态规范总结.md"; sourceTree = "<group>"; };
+		50DE122225BFA22000AD798F /* LengthOfSubstring.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LengthOfSubstring.h; sourceTree = "<group>"; };
+		50DE122325BFA22000AD798F /* LengthOfSubstring.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LengthOfSubstring.m; sourceTree = "<group>"; };
+		50DE122D25BFAD3900AD798F /* FindMedianSortedArrays.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindMedianSortedArrays.h; sourceTree = "<group>"; };
+		50DE122E25BFAD3900AD798F /* FindMedianSortedArrays.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindMedianSortedArrays.m; sourceTree = "<group>"; };
+		50DE123525BFC3E400AD798F /* BinarySearch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinarySearch.h; sourceTree = "<group>"; };
+		50DE123625BFC3E400AD798F /* BinarySearch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinarySearch.m; sourceTree = "<group>"; };
+		50DE123C25C0341C00AD798F /* HammingWeight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HammingWeight.h; sourceTree = "<group>"; };
+		50DE123D25C0341C00AD798F /* HammingWeight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HammingWeight.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +129,11 @@
 		50B79DEC25B823A100A11F1E /* LeetCode */ = {
 			isa = PBXGroup;
 			children = (
+				50DE123B25C0340000AD798F /* 191位1的个数 */,
+				50DE123325BFC3AB00AD798F /* 基础算法 */,
+				50DE122C25BFABEA00AD798F /* 4.寻找两个有序数组的中位数 */,
+				50DE122B25BFABA700AD798F /* 利用栈 */,
+				50DE117C25BEBFF400AD798F /* 动态规划 */,
 				50B79DED25B823A100A11F1E /* AppDelegate.h */,
 				50B79DEE25B823A100A11F1E /* AppDelegate.m */,
 				50B79DF025B823A100A11F1E /* SceneDelegate.h */,
@@ -150,6 +171,76 @@
 				50B79E1625B823A300A11F1E /* Info.plist */,
 			);
 			path = LeetCodeUITests;
+			sourceTree = "<group>";
+		};
+		50DE117C25BEBFF400AD798F /* 动态规划 */ = {
+			isa = PBXGroup;
+			children = (
+				50DE118725BECD4000AD798F /* 动态规范总结.md */,
+				50DE117D25BEC00700AD798F /* 最长子序列的长度 */,
+			);
+			path = "动态规划";
+			sourceTree = "<group>";
+		};
+		50DE117D25BEC00700AD798F /* 最长子序列的长度 */ = {
+			isa = PBXGroup;
+			children = (
+				50DE117E25BEC04800AD798F /* LISRecursion.h */,
+				50DE117F25BEC04800AD798F /* LISRecursion.m */,
+			);
+			path = "最长子序列的长度";
+			sourceTree = "<group>";
+		};
+		50DE122125BFA1B300AD798F /* 3.无重复字符的最长子串 */ = {
+			isa = PBXGroup;
+			children = (
+				50DE122225BFA22000AD798F /* LengthOfSubstring.h */,
+				50DE122325BFA22000AD798F /* LengthOfSubstring.m */,
+			);
+			path = "3.无重复字符的最长子串";
+			sourceTree = "<group>";
+		};
+		50DE122B25BFABA700AD798F /* 利用栈 */ = {
+			isa = PBXGroup;
+			children = (
+				50DE122125BFA1B300AD798F /* 3.无重复字符的最长子串 */,
+			);
+			path = "利用栈";
+			sourceTree = "<group>";
+		};
+		50DE122C25BFABEA00AD798F /* 4.寻找两个有序数组的中位数 */ = {
+			isa = PBXGroup;
+			children = (
+				50DE122D25BFAD3900AD798F /* FindMedianSortedArrays.h */,
+				50DE122E25BFAD3900AD798F /* FindMedianSortedArrays.m */,
+			);
+			path = "4.寻找两个有序数组的中位数";
+			sourceTree = "<group>";
+		};
+		50DE123325BFC3AB00AD798F /* 基础算法 */ = {
+			isa = PBXGroup;
+			children = (
+				50DE123425BFC3BF00AD798F /* 二分查找 */,
+			);
+			path = "基础算法";
+			sourceTree = "<group>";
+		};
+		50DE123425BFC3BF00AD798F /* 二分查找 */ = {
+			isa = PBXGroup;
+			children = (
+				50DE123525BFC3E400AD798F /* BinarySearch.h */,
+				50DE123625BFC3E400AD798F /* BinarySearch.m */,
+			);
+			path = "二分查找";
+			sourceTree = "<group>";
+		};
+		50DE123B25C0340000AD798F /* 191位1的个数 */ = {
+			isa = PBXGroup;
+			children = (
+				50DE123C25C0341C00AD798F /* HammingWeight.h */,
+				50DE123D25C0341C00AD798F /* HammingWeight.m */,
+			);
+			path = "191位1的个数";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,10 +375,15 @@
 				50B79E2D25B82CCF00A11F1E /* 交互值.m in Sources */,
 				50B79DF525B823A100A11F1E /* ViewController.m in Sources */,
 				50B79E3325B82FE000A11F1E /* 有序数组合并.m in Sources */,
+				50DE122F25BFAD3900AD798F /* FindMedianSortedArrays.m in Sources */,
+				50DE118025BEC04800AD798F /* LISRecursion.m in Sources */,
+				50DE122425BFA22000AD798F /* LengthOfSubstring.m in Sources */,
 				50B79DEF25B823A100A11F1E /* AppDelegate.m in Sources */,
+				50DE123E25C0341C00AD798F /* HammingWeight.m in Sources */,
 				50B79E2725B823D500A11F1E /* 反转字符串.m in Sources */,
 				50B79E0025B823A200A11F1E /* main.m in Sources */,
 				50B79DF225B823A100A11F1E /* SceneDelegate.m in Sources */,
+				50DE123725BFC3E400AD798F /* BinarySearch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
