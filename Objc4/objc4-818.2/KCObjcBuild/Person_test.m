@@ -16,4 +16,8 @@
     }
     return self;
 }
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
+    return [super allocWithZone:zone];
+}
 @end

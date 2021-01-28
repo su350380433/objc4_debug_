@@ -1935,8 +1935,16 @@ _objc_rootRelease(id obj)
 static ALWAYS_INLINE id
 callAlloc(Class cls, bool checkNil, bool allocWithZone=false)
 {
-#if __OBJC2__
+#if __OBJC2__  //✅有可用的编译器优化
+    /*
+        参考链接：https://www.jianshu.com/p/536824702ab6
+        */
+       
+       // checkNil 为false，!cls 也为false ，所以slowpath 为 false，假值判断不会走到if里面，即不会返回nil
     if (slowpath(checkNil && !cls)) return nil;
+    
+    //✅判断一个类是否有自定义的 +allocWithZone 实现，没有则走到if里面的实现
+    //✅ cls->ISA()->hasCustomAWZ() 表示判断一个类是否有自定义的 +allocWithZone
     if (fastpath(!cls->ISA()->hasCustomAWZ())) {
         return _objc_rootAllocWithZone(cls, nil);
     }

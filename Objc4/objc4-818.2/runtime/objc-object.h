@@ -210,6 +210,10 @@ isa_t::setClass(Class newCls, UNUSED_WITHOUT_PTRAUTH objc_object *obj)
     cls = newCls;
 
 #else // Nonpointer isa, no ptrauth
+    /*
+     为什么需要右移3位？
+     主要是由于shiftcls处于isa指针地址的中间部分，前面还有3个位域，为了不影响前面的3个位域的数据，需要右移将其抹零。
+     */
     shiftcls = (uintptr_t)newCls >> 3;
 #endif
 }
@@ -339,7 +343,7 @@ objc_object::initIsa(Class cls, bool nonpointer, UNUSED_WITHOUT_INDEXED_ISA_AND_
 { 
     ASSERT(!isTaggedPointer()); 
     
-    isa_t newisa(0);
+    isa_t newisa(0); //isa的初始化
 
     if (!nonpointer) {
         newisa.setClass(cls, this);
@@ -348,14 +352,14 @@ objc_object::initIsa(Class cls, bool nonpointer, UNUSED_WITHOUT_INDEXED_ISA_AND_
         ASSERT(!cls->instancesRequireRawIsa());
 
 
-#if SUPPORT_INDEXED_ISA
+#if SUPPORT_INDEXED_ISA //即isa通过 cls定义
         ASSERT(cls->classArrayIndex() > 0);
         newisa.bits = ISA_INDEX_MAGIC_VALUE;
         // isa.magic is part of ISA_MAGIC_VALUE
         // isa.nonpointer is part of ISA_MAGIC_VALUE
         newisa.has_cxx_dtor = hasCxxDtor;
         newisa.indexcls = (uintptr_t)cls->classArrayIndex();
-#else
+#else //bits 执行的流程
         newisa.bits = ISA_MAGIC_VALUE;
         // isa.magic is part of ISA_MAGIC_VALUE
         // isa.nonpointer is part of ISA_MAGIC_VALUE

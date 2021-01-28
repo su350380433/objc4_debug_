@@ -77,16 +77,20 @@ namespace {
 
 #include "isa.h"
 
-union isa_t {
+union isa_t {//联合体
     isa_t() { }
     isa_t(uintptr_t value) : bits(value) { }
 
-    uintptr_t bits;
+    uintptr_t bits;//通过bits初始化，cls有默认值
 
 private:
     // Accessing the class requires custom ptrauth operations, so
     // force clients to go through setClass/getClass by making this
     // private.
+    /* 提供了两个成员，cls 和 bits，由联合体的定义所知，这两个成员是互斥的，也就意味着，当初始化isa指针时，有两种初始化方式
+        通过cls初始化，bits无默认值
+        通过bits初始化，cls有默认值
+     */
     Class cls;
 
 public:
@@ -95,12 +99,12 @@ public:
         ISA_BITFIELD;  // defined in isa.h
         /*
          #     define ISA_BITFIELD                                                      \
-                 uintptr_t nonpointer        : 1;                                       \
-                 uintptr_t has_assoc         : 1;                                       \
-                 uintptr_t weakly_referenced : 1;                                       \
-                 uintptr_t shiftcls_and_sig  : 52;                                      \
-                 uintptr_t has_sidetable_rc  : 1;                                       \
-                 uintptr_t extra_rc          : 8
+                 uintptr_t nonpointer        : 1;   是否对isa指针开启指针优化  不只是类对象地址，isa中包含了类信息、对象的引用计数等
+                 uintptr_t has_assoc         : 1;   是否有关联对象                                     \
+                 uintptr_t weakly_referenced : 1;   对象是否被指向 或者 曾经指向一个ABC的弱变量  \
+                 uintptr_t shiftcls_and_sig  : 52;  存储类的信息                                     \
+                 uintptr_t has_sidetable_rc  : 1;   是否有外挂的散列表                                    \
+                 uintptr_t extra_rc          : 8    额外的引用计数
          */
     };
 

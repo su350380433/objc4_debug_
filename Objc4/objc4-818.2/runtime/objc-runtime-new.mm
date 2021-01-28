@@ -7958,7 +7958,9 @@ objc_constructInstance(Class cls, void *bytes)
 * class_createInstance
 * fixme
 * Locking: none
-*
+*   ✅cls->instanceSize：计算需要开辟的内存空间大小
+    ✅calloc：申请内存，返回地址指针
+    ✅obj->initInstanceIsa：将 类 与 isa 关联
 * Note: this function has been carefully written so that the fastpath
 * takes no branch.
 **********************************************************************/
@@ -7968,14 +7970,16 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
                               bool cxxConstruct = true,
                               size_t *outAllocatedSize = nil)
 {
-    ASSERT(cls->isRealized());
+    ASSERT(cls->isRealized());//检查是否已经实现
 
-    // Read class's info bits all at once for performance 一次性读取类的二进制信息，提高 性能
+    // Read class's info bits all at once for performance
+    //一次性读取类的二进制信息，提高 性能
     bool hasCxxCtor = cxxConstruct && cls->hasCxxCtor();
     bool hasCxxDtor = cls->hasCxxDtor();
     bool fast = cls->canAllocNonpointer();
     size_t size;
 
+    //计算需要开辟的内存大小，传入的extraBytes 为 0
     size = cls->instanceSize(extraBytes);
     if (outAllocatedSize) *outAllocatedSize = size;
 
@@ -7983,6 +7987,7 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     if (zone) {
         obj = (id)malloc_zone_calloc((malloc_zone_t *)zone, 1, size);//申请空间
     } else {
+        //申请内存
         obj = (id)calloc(1, size);
     }
     if (slowpath(!obj)) {
@@ -7993,6 +7998,7 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     }
 
     if (!zone && fast) {
+        //将 cls类 与 obj指针（即isa） 关联
         obj->initInstanceIsa(cls, hasCxxDtor);
     } else {
         // Use raw pointer isa on the assumption that they might be 假设他们可能会对区域或RR做一些奇怪的事情，请使用原始指针isa
@@ -8020,6 +8026,7 @@ id
 _objc_rootAllocWithZone(Class cls, malloc_zone_t *zone __unused)
 {
     // allocWithZone under __OBJC2__ ignores the zone parameter
+    //zone 参数不再使用 类创建实例内存空间
     return _class_createInstanceFromZone(cls, 0, nil,
                                          OBJECT_CONSTRUCT_CALL_BADALLOC);
 }

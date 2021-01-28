@@ -507,16 +507,21 @@ public:
         return _flags & FAST_CACHE_ALLOC_MASK;
     }
 
+    
+    /// ✅编译器快速计算内存大小
+    /// @param extra 额外的字节
     size_t fastInstanceSize(size_t extra) const
     {
         ASSERT(hasFastInstanceSize(extra));
 
+        //✅Gcc的内建函数 __builtin_constant_p 用于判断一个值是否为编译时常数，如果参数EXP 的值是常数，函数返回 1，否则返回 0
         if (__builtin_constant_p(extra) && extra == 0) {
             return _flags & FAST_CACHE_ALLOC_MASK16;
         } else {
             size_t size = _flags & FAST_CACHE_ALLOC_MASK;
             // remove the FAST_CACHE_ALLOC_DELTA16 that was added
             // by setFastInstanceSize
+            //✅删除由setFastInstanceSize添加的FAST_CACHE_ALLOC_DELTA16 8个字节
             return align16(size + extra - FAST_CACHE_ALLOC_DELTA16);
         }
     }
@@ -2141,12 +2146,15 @@ struct objc_class : objc_object {
     }
 
     inline size_t instanceSize(size_t extraBytes) const {
+        //✅编译器快速计算内存大小,并缓存
         if (fastpath(cache.hasFastInstanceSize(extraBytes))) {
             return cache.fastInstanceSize(extraBytes);
         }
 
+        // 计算类中所有属性的大小 + 额外的字节数0
         size_t size = alignedInstanceSize() + extraBytes;
         // CF requires all objects be at least 16 bytes.
+        //如果size 小于 16，最小取16
         if (size < 16) size = 16;
         return size;
     }

@@ -50,7 +50,24 @@ static inline uint32_t word_align(uint32_t x) {
 static inline size_t word_align(size_t x) {
     return (x + WORD_MASK) & ~WORD_MASK;
 }
+/*
+ ✅为什么需要16字节对齐
+ 
+ 需要字节对齐的原因，有以下几点
+    1、通常内存是由一个个字节组成的，cpu在存取数据时，并不是以字节为单位存储，而是以块为单位存取，块的大小为内存存取力度。频繁存取字节未对齐的数据，会极大降低cpu的性能，所以可以通过减少存取次数来降低cpu的开销
+    2、16字节对齐，是由于在一个对象中，第一个属性isa占8字节，当然一个对象肯定还有其他属性，当无属性时，会预留8字节，即16字节对齐，如果不预留，相当于这个对象的isa和其他对象的isa紧挨着，容易造成访问混乱
+    3、16字节对齐后，可以加快CPU读取速度，同时使访问更安全，不会产生访问混乱的情况
+
+ 作者：Style_月月
+ 链接：https://www.jianshu.com/p/b72018e88a97
+ 来源：简书
+ 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+ */
+
+/// ✅16字节对齐算法  开辟出来的都是 16字节的倍数
+/// @param x 传入的参数
 static inline size_t align16(size_t x) {
+    //✅ ~size_t(15)  ~ 符号进行非运算后为 16字节
     return (x + size_t(15)) & ~size_t(15);
 }
 
@@ -158,7 +175,9 @@ void vsyslog(int, const char *, va_list) UNAVAILABLE_ATTRIBUTE;
 #define ALWAYS_INLINE inline __attribute__((always_inline))
 #define NEVER_INLINE __attribute__((noinline))
 
-#define fastpath(x) (__builtin_expect(bool(x), 1))
+//这个指令是gcc引入的，作用是允许程序员将最有可能执行的分支告诉编译器。
+//这个指令的写法为：__builtin_expect(EXP, N)。 意思是：EXP==N的概率很大。
+#define fastpath(x) (__builtin_expect(bool(x), 1))//x很可能为真
 #define slowpath(x) (__builtin_expect(bool(x), 0))
 
 

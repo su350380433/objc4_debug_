@@ -67,6 +67,13 @@ id objc_getProperty(id self, SEL _cmd, ptrdiff_t offset, BOOL atomic) {
 
 static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t offset, bool atomic, bool copy, bool mutableCopy) __attribute__((always_inline));
 
+
+/// 原理就是新值retain，旧值release
+/// @param newValue newValue description
+/// @param offset offset description
+/// @param atomic atomic description
+/// @param copy copy description
+/// @param mutableCopy mutableCopy description
 static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t offset, bool atomic, bool copy, bool mutableCopy)
 {
     if (offset == 0) {
@@ -83,7 +90,7 @@ static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t o
         newValue = [newValue mutableCopyWithZone:nil];
     } else {
         if (*slot == newValue) return;
-        newValue = objc_retain(newValue);
+        newValue = objc_retain(newValue);//新值Retain
     }
 
     if (!atomic) {
@@ -97,7 +104,7 @@ static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t o
         slotlock.unlock();
     }
 
-    objc_release(oldValue);
+    objc_release(oldValue);//✅旧值 release
 }
 
 void objc_setProperty(id self, SEL _cmd, ptrdiff_t offset, id newValue, BOOL atomic, signed char shouldCopy) 
