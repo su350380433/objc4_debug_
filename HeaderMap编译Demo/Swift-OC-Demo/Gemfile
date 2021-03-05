@@ -1,0 +1,9 @@
+source "http://rubygems.org"
+
+gem "fastlane"
+gem "cocoapods", '1.8.4'
+gem "xcodeproj"
+gem "mail"
+gem "dingbot"
+gem "mysql2"
+gem "cocoapods-imy-bin"

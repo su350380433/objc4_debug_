@@ -12,7 +12,6 @@
 #import "HomeViewController.h"
 #import "DMNavigationController.h"
 #import <objc/runtime.h>
-#import "Swift-OC-Bridging-Header.h"
 //#import "WGDesignerViewController.h"
 
 

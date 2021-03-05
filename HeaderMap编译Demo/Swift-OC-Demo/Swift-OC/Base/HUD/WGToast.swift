@@ -7,25 +7,25 @@
 //
 
 import UIKit
-import Toast
+//import Toast
 
 @objcMembers
 public final class WGToast: NSObject {
     
     @objc
     public class func showToast(title : String) -> Void {
-        WGToast.showToast(title: title, position: CSToastPositionCenter)
+//        WGToast.showToast(title: title, position: CSToastPositionCenter)
     }
     
     @objc
     public class func showToast(title : String, position : Any) -> Void {
-        WGToast.showToast(title: title, position: position, duration: 2.0)
+//        WGToast.showToast(title: title, position: position, duration: 2.0)
     }
     
     @objc
     public class func showToast(title : String, position : Any, duration : TimeInterval) -> Void {
         
-        UIApplication.shared.keyWindow?.makeToast(title, duration: duration, position: position, style: nil)
+//        UIApplication.shared.keyWindow?.makeToast(title, duration: duration, position: position, style: nil)
     }
     
 }

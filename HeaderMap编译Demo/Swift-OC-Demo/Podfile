@@ -1,25 +1,28 @@
-#plugin 'cocoapods-imy-bin'
-#use_binaries!
-#set_use_source_pods ['Moya','SnapKit']
+plugin 'cocoapods-imy-bin'
+use_binaries!
+#use_frameworks!
+#set_use_source_pods ['lottie-ios']
 
-
-source 'https://cdn.cocoapods.org/'
 platform :ios, '9.0'
-
-use_frameworks!
 
 target 'Swift-OC' do
     
+
+      source 'https://cdn.cocoapods.org/'
+
 #Swift库
 
-    pod 'Alamofire'
-    pod 'Moya'
-    pod 'SnapKit'
-    pod 'Kingfisher'
+#pod 'RxSwift', :podspec =>"https://gitlab.meiyou.com/Youbaobao/binary_spec_dev/raw/master/RxSwift/5.1.1/RxSwift.podspec"
+#pod 'RxSwift'
+    pod 'Alamofire',:podspec => "https://gitlab.meiyou.com/Youbaobao/binary_spec_dev/raw/master/Alamofire/4.9.1/Alamofire.binary.podspec.json"
+
+    pod 'Moya', '~> 11.0.0'
+    pod 'SnapKit', '~> 4.0.0'
+    pod 'Kingfisher', '~> 4.10.1'
     pod 'HandyJSON'
-    pod 'lottie-ios'
-    pod 'Toast'
-    
+    #pod 'HandyJSON', :podspec => "https://gitlab.meiyou.com/Youbaobao/binary_spec_dev/raw/master/HandyJSON/5.0.2.1/HandyJSON.binary.podspec.json"
+   pod 'lottie-ios'
+    pod 'Toast', '~> 4.0.0'
 #OC库
 
     pod 'MYLCommonUI', '~> 0.0.11'

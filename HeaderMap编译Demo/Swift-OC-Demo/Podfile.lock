@@ -4,35 +4,34 @@ PODS:
   - Kingfisher (4.10.1)
   - lottie-ios (3.1.8)
   - Masonry (1.1.0)
-  - Moya (13.0.1):
-    - Moya/Core (= 13.0.1)
-  - Moya/Core (13.0.1):
+  - Moya (11.0.2):
+    - Moya/Core (= 11.0.2)
+  - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
-    - Result (~> 4.1)
+    - Result (~> 3.0)
   - MYLCommonUI (0.0.11):
     - MYLCommonUI/Components (= 0.0.11)
     - MYLCommonUI/Utils (= 0.0.11)
   - MYLCommonUI/Components (0.0.11):
     - MYLCommonUI/Utils
   - MYLCommonUI/Utils (0.0.11)
-  - Result (4.1.0)
-  - SnapKit (4.2.0)
+  - Result (3.2.4)
+  - SnapKit (4.0.1)
   - Toast (4.0.0)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (from `https://gitlab.meiyou.com/Youbaobao/binary_spec_dev/raw/master/Alamofire/4.9.1/Alamofire.binary.podspec.json`)
   - HandyJSON
-  - Kingfisher
+  - Kingfisher (~> 4.10.1)
   - lottie-ios
   - Masonry
-  - Moya
+  - Moya (~> 11.0.0)
   - MYLCommonUI (~> 0.0.11)
-  - SnapKit
-  - Toast
+  - SnapKit (~> 4.0.0)
+  - Toast (~> 4.0.0)
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
-    - Alamofire
     - HandyJSON
     - Kingfisher
     - lottie-ios
@@ -43,18 +42,22 @@ SPEC REPOS:
     - SnapKit
     - Toast
 
+EXTERNAL SOURCES:
+  Alamofire:
+    :podspec: https://gitlab.meiyou.com/Youbaobao/binary_spec_dev/raw/master/Alamofire/4.9.1/Alamofire.binary.podspec.json
+
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Alamofire: b3297e90e5430c8c236cdc826e27990a98bb45d0
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
+  Moya: a725035953bc1c0eb1be505ab903984501d82440
   MYLCommonUI: 265616958852baeaf497e4ad6f1413d6c24a30c8
-  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
-PODFILE CHECKSUM: c109c08c13ab806738e22c0b5b7ded5ecc9f92b8
+PODFILE CHECKSUM: 1dd7c12af1e24432f8d13def4df3376e6b217e1a
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.1

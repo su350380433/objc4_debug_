@@ -1,0 +1,42 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+# FastlaneCore::UI.ui_object.log.level = Logger::ERROR
+
+ENV['MAIN_SH_PATH'] ||= ".."
+$LOAD_PATH.unshift File.expand_path(ENV['MAIN_SH_PATH'])
+
+require 'ruby/main.rb'
+
+default_platform(:ios)
+
+before_all do
+  do_before_all_lane
+end
+
+after_all do |lane|
+  do_after_all_lane(lane)
+end
+
+error do |lane, exception|
+  do_error_all_lane(lane, exception)
+end
+
+platform :ios do
+  desc "Jenkins lane"
+  lane :jenkins do
+    do_lane_jenkins
+  end
+end
