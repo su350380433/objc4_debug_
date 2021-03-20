@@ -1,0 +1,12 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+target 'Storyboard_demo' do
+  # Repo 依赖， 1.7 之后可以用CDN地址：
+  source 'https://cdn.cocoapods.org/'
+
+  pod 'SnapKit'
+  pod 'SwiftyJSON'
+  pod 'Alamofire'
+
+end
