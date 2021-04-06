@@ -300,7 +300,9 @@ static NSString * const kBSRecordListCellIdentifier  = @"kBSRecordListCellIdenti
         }
         
         [weakSelf dismissViewControllerAnimated:YES completion:^{
-            [[BSUITestLogic sharedInstance] replayHistoryRecord:filePath repeatCount:recCount.intValue complete:^{
+            [[BSUITestLogic sharedInstance] replayHistoryRecord:filePath
+                                                    repeatCount:recCount.intValue
+                                                       complete:^{
             }];
         }];
     }];

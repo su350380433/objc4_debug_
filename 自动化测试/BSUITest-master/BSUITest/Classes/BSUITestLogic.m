@@ -12,7 +12,7 @@
 #import "TPPreciseTimer.h"
 #import <objc/runtime.h>
 #import <PTFakeTouch/PTFakeMetaTouch.h>
-
+#import <Foundation/Foundation.h>
 #pragma mark - BSLogTouch
 
 @interface BSLogTouch : NSObject<NSCoding>
@@ -298,7 +298,7 @@
             UIView *view = touch.view;
             UIWindow *window = touch.window;
             BOOL isKeyboardWindow = [window isKindOfClass:NSClassFromString(@"UIRemoteKeyboardWindow")];
-            
+//            NSLog(@"phase = %ld, view = %@, window = %@ ", (long)phase, NSStringFromClass(view.class),NSStringFromClass( window.class));
             if (view && phase == UITouchPhaseBegan  && !CGPointEqualToPoint(point, CGPointMake(0, [UIScreen mainScreen].bounds.size.height))) {
                 [[BSUITestLogic sharedInstance] record:point isKeyboard:isKeyboardWindow endTouch:[window isKindOfClass:NSClassFromString(@"BSUITestWindow")]];
             }
